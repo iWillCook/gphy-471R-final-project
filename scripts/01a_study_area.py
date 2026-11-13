@@ -42,3 +42,4 @@ print(cw[["huc12", "name", "areasqkm"]])
 
 cw.to_file(c.study_gpkg, layer="cw_units")
 cw.dissolve()[["geometry"]].to_file(c.study_gpkg, layer="cw_area")
+

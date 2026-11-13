@@ -1,0 +1,11 @@
+# PyCharm / Python
+.idea/
+__pycache__/
+
+# Large downloads the scripts can regenerate
+data/raw/dem/
+data/raw/canopy/*.zip
+data/raw/sentinel1/
+
+# Earthdata credentials
+.netrc
