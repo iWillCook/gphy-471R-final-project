@@ -14,6 +14,7 @@ processed = root / "data" / "processed"
 study_dir = raw / "study_area"
 snotel_dir = raw / "snotel"
 study_gpkg = study_dir / "study_area.gpkg"
+dem_dir = raw / "dem"
 
 # ---------------- Time period ----------------
 wys = [2021]   # water years; expand to list(range(2017, 2026)) later
@@ -44,11 +45,19 @@ cw_ids = ["160202040201", "160202040202"]   # Big & Little Cottonwood headwaters
 
 geo = "EPSG:4326"     # lat/lon
 utm = "EPSG:32612"    # UTM zone 12N, meters
+res = 30   # analysis pixel size (m)
+
+
+def bbox(layer="region", buf=0.02):
+    """Lon/lat bounding box of a study area layer, plus a small buffer (degrees)."""
+    import geopandas as gpd
+    minx, miny, maxx, maxy = gpd.read_file(study_gpkg, layer=layer).to_crs(geo).total_bounds
+    return (minx - buf, miny - buf, maxx + buf, maxy + buf)
 
 
 def make_dirs():
     """Create the data folders if they don't exist yet."""
-    for d in [study_dir, snotel_dir, processed]:
+    for d in [study_dir, snotel_dir, dem_dir, processed]:
         d.mkdir(parents=True, exist_ok=True)
 
 
