@@ -15,8 +15,9 @@ study_dir = raw / "study_area"
 snotel_dir = raw / "snotel"
 study_gpkg = study_dir / "study_area.gpkg"
 dem_dir = raw / "dem"
-canopy_dir = raw / "canopy"     # NEW
-s1_dir = raw / "sentinel1"      # NEW
+canopy_dir = raw / "canopy"
+s1_dir = raw / "sentinel1"
+daymet_dir = raw / "daymet"     # NEW
 
 # ---------------- Time period ----------------
 wys = [2021]   # water years; expand to list(range(2017, 2026)) later
@@ -51,9 +52,11 @@ res = 30   # analysis pixel size (m)
 
 # ---------------- Data Sources ----------------
 tcc_url = ("https://data.fs.usda.gov/geodata/rastergateway/treecanopycover/docs/"
-           "v2023-5/nlcd_tcc_CONUS_2023_v2023-5_wgs84.zip")     # NEW
-s1_name = "OPERA_L2_RTC-S1_V1"      # NEW
-s1_half = 2   # NEW
+           "v2023-5/nlcd_tcc_CONUS_2023_v2023-5_wgs84.zip")
+s1_name = "OPERA_L2_RTC-S1_V1"
+s1_half = 2
+daymet_url = "https://daymet.ornl.gov/single-pixel/api/data"    # NEW
+daymet_vars = ["prcp", "tmax", "tmin"]     # NEW
 
 
 # ---------------- Helpers ----------------
@@ -66,5 +69,5 @@ def bbox(layer="region", buf=0.02):
 
 def make_dirs():
     """Create the data folders if they don't exist yet."""
-    for d in [study_dir, snotel_dir, dem_dir, canopy_dir, s1_dir, processed]:   # canopy_dir, s1_dir NEW
+    for d in [study_dir, snotel_dir, dem_dir, canopy_dir, s1_dir, daymet_dir, processed]:   # daymet_dir NEW
         d.mkdir(parents=True, exist_ok=True)
