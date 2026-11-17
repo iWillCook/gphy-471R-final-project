@@ -59,6 +59,11 @@ s1_name = "OPERA_L2_RTC-S1_V1"
 s1_half = 2
 daymet_url = "https://daymet.ornl.gov/single-pixel/api/data"
 daymet_vars = ["prcp", "tmax", "tmin"]
+# Model Predictors, grouped by data source      #
+radar_feats = ["vv_db", "vh_db", "ratio_db", "dvv", "dvh", "dratio"]
+terrain_feats = ["elev", "slope", "northness", "eastness", "tpi", "canopy"]
+climate_feats = ["cum_prcp", "prcp_7d", "pdd"]
+features = radar_feats + terrain_feats + climate_feats
 
 
 # ---------------- Helpers ----------------
