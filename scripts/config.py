@@ -18,6 +18,7 @@ dem_dir = raw / "dem"
 canopy_dir = raw / "canopy"
 s1_dir = raw / "sentinel1"
 daymet_dir = raw / "daymet"
+models_dir = root / "models"
 
 # ---------------- Time period ----------------
 wys = [2021]   # water years; expand to list(range(2017, 2026)) later
@@ -76,5 +77,5 @@ def bbox(layer="region", buf=0.02):
 
 def make_dirs():
     """Create the data folders if they don't exist yet."""
-    for d in [study_dir, snotel_dir, dem_dir, canopy_dir, s1_dir, daymet_dir, processed]:
+    for d in [study_dir, snotel_dir, dem_dir, canopy_dir, s1_dir, daymet_dir, processed, models_dir]:
         d.mkdir(parents=True, exist_ok=True)
